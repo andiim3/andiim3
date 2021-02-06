@@ -32,6 +32,7 @@ function get_data($url)
 {
   $ch = curl_init();
   $timeout = 60;
+  $ckfile = tempnam ("/home/", "targetwebpagecookie.txt");	
   $userAgents = array(
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
         'Mozilla/4.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36',
@@ -59,12 +60,15 @@ function get_data($url)
     $rand=rand(0,21);
     $userAgent=$userAgents[$rand];
   curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-  curl_setopt($ch,CURLOPT_URL,$url);
-  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-  curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+  curl_setopt($ch, CURLOPT_URL,$url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
   curl_setopt($ch, CURLOPT_FAILONERROR, true);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($ch, CURLOPT_REFERER, 'https://google.com/');
+  curl_setopt($ch, CURLOPT_MAXREDIRS, 4);
+  curl_setopt($ch, CURLOPT_COOKIESESSION, TRUE);
+  curl_setopt($ch, CURLOPT_COOKIEJAR, $ckfile);
+  curl_setopt($ch, CURLOPT_REFERER, $url);
   $data = curl_exec($ch);
   curl_close($ch);
   return $data;
