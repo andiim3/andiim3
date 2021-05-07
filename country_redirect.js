@@ -28,8 +28,10 @@ $(function(){
             toserver = "hk";
           }
         if(toserver != thisserver) {
-            console.log("We will redirect you to our "+ toserver +" server");                
+            console.log("Redirecting to "+ toserver +" server");
             window.location = "https://"+toserver+".andiim3.com" + window.location.pathname;                
+          }else{
+                console.log("You will stay in "+thisserver+" server.");
           }
       }, "jsonp");  
 });
