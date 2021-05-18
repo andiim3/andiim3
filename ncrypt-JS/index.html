@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <head>
+        <title>ncryptJS - Javascript Encryption</title>
+        <style>
+            #box {
+                width: 550px;
+                position: relative;
+                margin: 100px auto;
+            }
+            input {margin:5px;margin-left:20px;}
+        </style>
+    </head>
+    <body>
+        <div id="box">
+            originaltxt: <textarea type="text" id="originaltxt" onkeyup="doitnow()">This is the new text</textarea>
+            <br>
+            Key: <input type="text" id="key" value="MjAyMTA1MTgxNTAw" onkeyup="doitnow()">
+            <br>
+            
+            <br>
+            Encoded: <textarea type="text" id="encodedtxt"></textarea>
+            <br>
+            Decoded: <textarea type="text" id="decodedtxt"></textarea>
+        </div>
+
+        <script src="./ncryptJS-2.js"></script>
+        <script>
+            function doitnow(){
+                let cripto= new ncrypt;
+
+                var theText = document.getElementById("originaltxt").value;
+                console.log(theText);
+                var theKey = document.getElementById("key").value;
+                console.log(theKey);                                
+                var encodedtxt = cripto.encrypt(theKey, theText);
+                console.log(encodedtxt);
+                document.getElementById("encodedtxt").value = encodedtxt;
+                var encodedtxt = document.getElementById("encodedtxt").value;            
+                var decodedtxt = cripto.decrypt(theKey, encodedtxt);
+                document.getElementById("decodedtxt").value = decodedtxt;
+            }
+            doitnow();
+
+        </script>
+    </body>
+</html>
