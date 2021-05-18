@@ -7,39 +7,51 @@
                 position: relative;
                 margin: 100px auto;
             }
-            input {margin:5px;margin-left:20px;}
+            
         </style>
     </head>
     <body>
         <div id="box">
-            originaltxt: <textarea type="text" id="originaltxt" onkeyup="doitnow()">This is the new text</textarea>
-            <br>
-            Key: <input type="text" id="key" value="MjAyMTA1MTgxNTAw" onkeyup="doitnow()">
-            <br>
-            
-            <br>
-            Encoded: <textarea type="text" id="encodedtxt"></textarea>
-            <br>
-            Decoded: <textarea type="text" id="decodedtxt"></textarea>
+            <table>
+                <tr>
+                    <td>Original Text</td> <td><textarea type="text" id="originaltxt" onkeyup="doitnow()">This is the new text</textarea></td>
+                </tr><tr>
+                    <td>Encryption Key</td> <td><input type="text" id="key" value="Password" onkeyup="doitnow()"></td>
+                </tr><tr>
+                    <td>Encoded</td> <td><textarea type="text" id="encodedtxt"></textarea></td>
+                </tr><tr>
+                    <td></td> <td></td>
+                </tr><tr>
+                    <td>Decrypt Key</td> <td><input type="text" id="key2" value="" onkeyup="doitnow2()"></td>
+                </tr><tr>
+                    <td>Decoded Text</td> <td><textarea type="text" id="decodedtxt"></textarea></td>
+                </tr>
+            </table>
+      
         </div>
 
         <script src="./ncryptJS-2.js"></script>
         <script>
             function doitnow(){
                 let cripto= new ncrypt;
-
                 var theText = document.getElementById("originaltxt").value;
-                console.log(theText);
+                console.log("Original Text: "+theText);
                 var theKey = document.getElementById("key").value;
-                console.log(theKey);                                
+                console.log("Encryption Key: "+theKey);                                
                 var encodedtxt = cripto.encrypt(theKey, theText);
                 console.log(encodedtxt);
                 document.getElementById("encodedtxt").value = encodedtxt;
+            }
+            function doitnow2(){
+                let cripto= new ncrypt;
+                var theKey2 = document.getElementById("key2").value;
+                console.log("Decription Key: "+theKey2);                                
                 var encodedtxt = document.getElementById("encodedtxt").value;            
-                var decodedtxt = cripto.decrypt(theKey, encodedtxt);
+                var decodedtxt = cripto.decrypt(theKey2, encodedtxt);
                 document.getElementById("decodedtxt").value = decodedtxt;
             }
             doitnow();
+            //doitnow2();
 
         </script>
     </body>
