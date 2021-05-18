@@ -7,6 +7,14 @@
                 position: relative;
                 margin: 100px auto;
             }
+            textarea {
+                margin: 0px;
+                width: 263px;
+                height: 124px;
+            }
+            td {
+                padding:10px;
+            }
             
         </style>
     </head>
@@ -14,7 +22,7 @@
         <div id="box">
             <table>
                 <tr>
-                    <td>Original Text</td> <td><textarea type="text" id="originaltxt" onkeyup="doitnow()">This is the new text</textarea></td>
+                    <td>Original Text</td> <td><textarea type="text" id="originaltxt" onkeyup="doitnow()">This is the new text. Currently only support UTF-8 text. No Binary File is supported yet.</textarea></td>
                 </tr><tr>
                     <td>Encryption Key</td> <td><input type="text" id="key" value="Password" onkeyup="doitnow()"></td>
                 </tr><tr>
@@ -22,9 +30,9 @@
                 </tr><tr>
                     <td></td> <td></td>
                 </tr><tr>
-                    <td>Decrypt Key</td> <td><input type="text" id="key2" value="" onkeyup="doitnow2()"></td>
+                    <td>Decrypt Key</td> <td><input type="text" id="key2" value="" onkeyup="doitnow2()"> <br><em>Type the same key as the "Encryption Key"</em></td>
                 </tr><tr>
-                    <td>Decoded Text</td> <td><textarea type="text" id="decodedtxt"></textarea></td>
+                    <td>Decoded Text</td> <td><textarea type="text" id="decodedtxt">This will change automatically if the Decrypt Key is correct</textarea></td>
                 </tr>
             </table>
       
